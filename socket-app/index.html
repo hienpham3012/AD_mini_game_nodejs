@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/slot-machine/jquery.slotmachine.css">
+    <link rel="stylesheet" href="pub/css/style.css" type="text/css" media="screen">
+    <style>
+        @media only screen and (min-width: 768px) {
+            .mobile-screen {
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .screen-desktop {
+                display: none;
+            }
+        }
+        #play-game, #reset-game {
+            background: #f00;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+<div class="screen-desktop">
+    <div class="container-fluid">
+        <div class="row result">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <ul id="machine1" class="slotMachine">
+                    <li class="slot parent"><p class="slot0">0</p></li>
+                    <li class="slot  parent" ><p class="slot1">1</p></li>
+                    <li class="slot  parent"><p class="slot2">2</p></li>
+                    <li class="slot  parent"><p class="slot3">3</p></li>
+                    <li class="slot  parent"><p class="slot4">4</p></li>
+                    <li class="slot  parent"><p class="slot5">5</p></li>
+                    <li class="slot  parent"><p class="slot6">6</p></li>
+                    <li class="slot  parent"><p class="slot7">7</p></li>
+                    <li class="slot  parent"><p class="slot8">8</p></li>
+                    <li class="slot  parent"><p class="slot9">9</p></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <ul id="machine2" class="slotMachine">
+                    <li class="slot parent"><p class="slot0">0</p></li>
+                    <li class="slot parent" ><p class="slot1">1</p></li>
+                    <li class="slot parent"><p class="slot2">2</p></li>
+                    <li class="slot parent"><p class="slot3">3</p></li>
+                    <li class="slot parent"><p class="slot4">4</p></li>
+                    <li class="slot parent"><p class="slot5">5</p></li>
+                    <li class="slot parent"><p class="slot6">6</p></li>
+                    <li class="slot parent"><p class="slot7">7</p></li>
+                    <li class="slot parent"><p class="slot8">8</p></li>
+                    <li class="slot parent"><p class="slot9">9</p></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <ul id="machine3" class="slotMachine">
+                    <li class="slot parent"><p class="slot0">0</p></li>
+                    <li class="slot parent" ><p class="slot1">1</p></li>
+                    <li class="slot parent"><p class="slot2">2</p></li>
+                    <li class="slot parent"><p class="slot3">3</p></li>
+                    <li class="slot parent"><p class="slot4">4</p></li>
+                    <li class="slot parent"><p class="slot5">5</p></li>
+                    <li class="slot parent"><p class="slot6">6</p></li>
+                    <li class="slot parent"><p class="slot7">7</p></li>
+                    <li class="slot parent"><p class="slot8">8</p></li>
+                    <li class="slot parent"><p class="slot9">9</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 midd-div">
+
+                <div class="col-md-4 col-sm-4 col-xs-12 "><h2 class="title">Lucky Number: </h2></div>
+                <div class="col-md-8 col-sm-8 col-xs-12 show-result">
+                    <h2><span id="machineResult"></span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mobile-screen">
+    <button id="play-game">
+        <span>Play</span>
+    </button>
+</div>
+<!--<h1>Hello World!</h1>-->
+<!--<div id="future"></div>-->
+<!--<form id="form" id="chat_form">-->
+    <!--<input id="chat_input" type="text">-->
+    <!--<input type="submit" value="Send">-->
+<!--</form>-->
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/pub/js/jquery.slotmachine.js"></script>
+<script>
+    var machine1 = $("#machine1").slotMachine({
+        active	: 0,
+        delay	: 1000
+    });
+
+    var machine2 = $("#machine2").slotMachine({
+        active	: 1,
+        delay	: 1000
+    });
+
+    var machine3 = $("#machine3").slotMachine({
+        active	: 2,
+        delay	: 1000
+    });
+    var str = "  ";
+
+    function onComplete(active){
+        switch(this.element[0].id){
+            case 'machine1':
+                $("#machine1Result").text("First Number: "+this.active);
+                str = str + this.active ;
+                $("#machineResult").text(str);
+                break;
+            case 'machine2':
+                $("#machine2Result").text("Second Number: "+this.active);
+                str = str + this.active ;
+                $("#machineResult").text(str);
+                break;
+            case 'machine3':
+                $("#machine3Result").text("Third Number: "+this.active);
+                str = str + this.active + "/ ";
+                $("#machineResult").text(str);
+                break;
+
+                $("#machineResult").text(str);
+        }
+    }
+    var socket = io.connect('http://192.168.1.110:4300');
+    socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+    });
+    socket.on('messages', function(data) {
+        alert(data);
+    });
+    socket.on('broad', function(data) {
+        console.log($('.screen-mobile').is(":visible"));
+        if (!$('.screen-mobile').is(":visible")) {
+             console.log(data);
+            if (data == 'play-game') {
+                $("#machineResult").text(" ");
+                machine1.shuffle(5, onComplete);
+
+                setTimeout(function(){
+                    machine2.shuffle(5, onComplete);
+                }, 500);
+
+                setTimeout(function(){
+                    machine3.shuffle(5, onComplete);
+                }, 1000);
+            }
+            if (data == 'reset-game') {
+                $('.jackpot').html('stop game');
+            }
+        }
+       
+    });
+    $('#play-game').on('click', function() {
+        socket.emit('messages', 'play-game');
+    });
+    $('#reset-game').on('click', function() {
+        socket.emit('messages', 'reset-game');
+    });
+</script>
+</body>
+</html>
