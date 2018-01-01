@@ -34,7 +34,7 @@
 </header>
 <section>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row btn-start">
             <div class="col-md-12 col-xs-12 col-sm-12 ">
                 <div class="col-md-2 col-sm-2 col-xs-12">
                     <div id="slotMachineButton1" class="slotMachineButton"><p>START</p></div>
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row result">
+        <div class="row result hidden-xs">
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <ul id="machine1" class="slotMachine">
                     <li class="slot parent"><p class="slot0">0</p></li>
@@ -90,8 +90,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-xs-12 col-sm-12 midd-div">
-                
+            <div class="col-md-12 col-xs-12 col-sm-12 midd-div hidden-xs">
                 <div class="col-md-4 col-sm-4 col-xs-12 "><h2 class="title">Lucky Number: </h2></div>
                 <div class="col-md-8 col-sm-8 col-xs-12 show-result">
                     <h2><span id="machineResult"></span></h2>
@@ -115,7 +114,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
         <script>  
- var socket = io.connect('http://192.168.1.110:4200');
+ var socket = io.connect('http://192.168.1.9:4200');
 
  socket.on('connect', function(data) {
     socket.emit('join', 'Hello World from client');
