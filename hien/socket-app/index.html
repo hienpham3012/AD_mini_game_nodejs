@@ -20,13 +20,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 ">
-                <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <img src="public/TTU-logo.jpg" class="logo" />
                 </div>
-                <div class="col-md-9 col-sm-8 col-xs-12 midd-div">
-                    <div>
-                        <h3 class="text-center cl-red slogan">THIENTU TELECOMMUNICATION SERVICES TRADING COMPANY</h3>
-                    </div>
+               <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                   <h2 class="text-center">LUCKY DRAW</h2>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <img src="public/logoFN.jpg" class="logo" />
                 </div>
             </div>
         </div>
@@ -38,6 +39,11 @@
             <div class="col-md-12 col-xs-12 col-sm-12 ">
                 <div class="col-md-2 col-sm-2 col-xs-12">
                     <div id="slotMachineButton1" class="slotMachineButton"><p>START</p></div>
+                </div>
+                <div class="hidden">
+                    <video id="video" width="400" controls>
+                        <source src="public/video/clip1.mp3" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
@@ -114,7 +120,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
         <script>  
- var socket = io.connect('http://192.168.1.9:4200');
+ var socket = io.connect('http://192.168.8.185:4200');
 
  socket.on('connect', function(data) {
     socket.emit('join', 'Hello World from client');
@@ -161,11 +167,11 @@
                 
                 setTimeout(function(){
                     machine2.shuffle(5, onComplete);
-                }, 500);
+                }, 1500);
                 
                 setTimeout(function(){
                     machine3.shuffle(5, onComplete);
-                }, 1000);
+                }, 3000);
                 
                 event.preventDefault();
    });
