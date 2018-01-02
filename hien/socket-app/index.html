@@ -19,7 +19,7 @@
 <header>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <div class="col-md-12 col-sm-12 col-xs-12 parent">
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <img src="public/TTU-logo.jpg" class="logo" />
                 </div>
@@ -27,7 +27,7 @@
                    <h2 class="text-center">LUCKY DRAW</h2>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <img src="public/logoFN.jpg" class="logo" />
+                    <img src="public/Logo_TTuFN.jpeg" class="logo" />
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
     <div class="container-fluid">
         <div class="row btn-start">
             <div class="col-md-12 col-xs-12 col-sm-12 ">
-                <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <div id="slotMachineButton1" class="slotMachineButton"><p>START</p></div>
                 </div>
                 <div class="hidden">
@@ -120,7 +120,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
         <script>  
- var socket = io.connect('http://192.168.8.185:4200');
+ var socket = io.connect('http://192.168.8.185:4201');
 
  socket.on('connect', function(data) {
     socket.emit('join', 'Hello World from client');
