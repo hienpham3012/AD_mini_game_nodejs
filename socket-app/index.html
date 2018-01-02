@@ -137,7 +137,7 @@
                 $("#machineResult").text(str);
         }
     }
-    var socket = io.connect('http://192.168.1.110:4300');
+    var socket = io.connect('http://192.168.8.185:4300');
     socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
     });

@@ -146,6 +146,7 @@
                     $("#machineResult").text(str);
                 }
             }
+
             var machine1 = $("#machine1").slotMachine({
                 active  : 0,
                 delay   : 1000
@@ -153,25 +154,27 @@
             
             var machine2 = $("#machine2").slotMachine({
                 active  : 1,
-                delay   : 1000
+                delay   : 2000
             });
             
             var machine3 = $("#machine3").slotMachine({
                 active  : 2,
-                delay   : 1000
+                delay   : 3000
             });
             var str = "  "; 
  socket.on('broad', function(data) {
         $("#machineResult").text(" ");
+         var t = Math.floor((Math.random() * 3600) + 60);
+            console.log(t + "here");
                 machine1.shuffle(5, onComplete);
                 
                 setTimeout(function(){
                     machine2.shuffle(5, onComplete);
-                }, 1500);
+                }, 500);
                 
                 setTimeout(function(){
                     machine3.shuffle(5, onComplete);
-                }, 3000);
+                }, 1000);
                 
                 event.preventDefault();
    });
@@ -179,6 +182,7 @@
  $('#slotMachineButton1').click(function(e){
      e.preventDefault();
      var message = $(this).val();
+     
      socket.emit('messages', message);
  });
 </script>  
