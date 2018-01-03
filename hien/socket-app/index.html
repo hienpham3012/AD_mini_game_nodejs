@@ -38,11 +38,11 @@
         <div class="row btn-start">
             <div class="col-md-12 col-xs-12 col-sm-12 ">
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <div id="slotMachineButton1" class="slotMachineButton"><p>START</p></div>
+                    <button id="slotMachineButton1" class="slotMachineButton"><p>START</p></button>
                 </div>
                 <div class="hidden">
                     <video id="video" width="400" controls>
-                        <source src="public/video/clip1.mp3" type="video/mp4">
+                        <source src="public/video/protec_2.mp3" type="video/mp4">
                     </video>
                 </div>
             </div>
@@ -53,15 +53,15 @@
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <ul id="machine1" class="slotMachine">
                     <li class="slot parent"><p class="slot0">0</p></li>
-                    <li class="slot  parent" ><p class="slot1">1</p></li>
-                    <li class="slot  parent"><p class="slot2">2</p></li>
-                    <li class="slot  parent"><p class="slot3">3</p></li>
-                    <li class="slot  parent"><p class="slot4">4</p></li>
-                    <li class="slot  parent"><p class="slot5">5</p></li>
-                    <li class="slot  parent"><p class="slot6">6</p></li>
-                    <li class="slot  parent"><p class="slot7">7</p></li>
-                    <li class="slot  parent"><p class="slot8">8</p></li>
-                    <li class="slot  parent"><p class="slot9">9</p></li>
+                    <li class="slot parent"><p class="slot1">1</p></li>
+                    <li class="slot parent"><p class="slot2">2</p></li>
+                    <li class="slot parent"><p class="slot3">3</p></li>
+                    <li class="slot parent"><p class="slot4">4</p></li>
+                    <li class="slot parent"><p class="slot5">5</p></li>
+                    <li class="slot parent"><p class="slot6">6</p></li>
+                    <li class="slot parent"><p class="slot7">7</p></li>
+                    <li class="slot parent"><p class="slot8">8</p></li>
+                    <li class="slot parent"><p class="slot9">9</p></li>
                 </ul>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4">
@@ -126,69 +126,76 @@
     socket.emit('join', 'Hello World from client');
  });
  function onComplete(active){
-                switch(this.element[0].id){
-                    case 'machine1':                        
-                        $("#machine1Result").text("First Number: "+this.active);    
-                        str = str + this.active ; 
-                        $("#machineResult").text(str);  
-                        break;
-                    case 'machine2':
-                        $("#machine2Result").text("Second Number: "+this.active);
-                        str = str + this.active ; 
-                        $("#machineResult").text(str);
-                        break;
-                    case 'machine3':
-                        $("#machine3Result").text("Third Number: "+this.active);
-                        str = str + this.active + "/ "; 
-                        $("#machineResult").text(str);
-                        break;
+        switch(this.element[0].id){
+            case 'machine1':                        
+                $("#machine1Result").text("First Number: "+this.active);    
+                str = str + this.active ; 
+                $("#machineResult").text(str);  
+                break;
+            case 'machine2':
+                $("#machine2Result").text("Second Number: "+this.active);
+                str = str + this.active ; 
+                $("#machineResult").text(str);
+                break;
+            case 'machine3':
+                $("#machine3Result").text("Third Number: "+this.active);
+                str = str + this.active + "/ "; 
+                $("#machineResult").text(str);
+                break;
 
-                    $("#machineResult").text(str);
-                }
-            }
+            $("#machineResult").text(str);
+             document.getElementById("slotMachineButton1").disabled = false;
+        }
+    }
 
-            var machine1 = $("#machine1").slotMachine({
-                active  : 0,
-                delay   : 1000
-            });
-            
-            var machine2 = $("#machine2").slotMachine({
-                active  : 1,
-                delay   : 2000
-            });
-            
-            var machine3 = $("#machine3").slotMachine({
-                active  : 2,
-                delay   : 3000
-            });
-            var str = "  "; 
- socket.on('broad', function(data) {
+    var machine1 = $("#machine1").slotMachine({
+        active  : 0,
+        delay   : 2000
+    });
+    
+    var machine2 = $("#machine2").slotMachine({
+        active  : 1,
+        delay   : 2000
+    });
+    
+    var machine3 = $("#machine3").slotMachine({
+        active  : 2,
+        delay   : 2000
+    });
+    var str = " "; 
+    socket.on('broad', function(data) {
+
+         var myVideo = document.getElementById("video"); 
+                 myVideo.play();
+
         $("#machineResult").text(" ");
-         var t = Math.floor((Math.random() * 3600) + 60);
-            console.log(t + "here");
-                machine1.shuffle(5, onComplete);
-                
-                setTimeout(function(){
-                    machine2.shuffle(5, onComplete);
-                }, 500);
-                
-                setTimeout(function(){
-                    machine3.shuffle(5, onComplete);
-                }, 1000);
-                
-                event.preventDefault();
-   });
+       //  var t = Math.floor((Math.random() * 3600) + 60);
+         //   console.log(t + "here");
+        machine1.shuffle(5, onComplete);
+        
+        setTimeout(function(){
+            machine2.shuffle(5, onComplete);
+        }, 500);
+          setTimeout(function(){
+            machine3.shuffle(5, null);
+        }, 1000);
+          setTimeout(function(){
+            machine3.shuffle(5, null);
+        }, 1000);
+        setTimeout(function(){
+            machine3.shuffle(5, onComplete);
+        }, 1000);
+        
+        event.preventDefault();
+    });
 
  $('#slotMachineButton1').click(function(e){
+    document.getElementById("slotMachineButton1").disabled = true;
      e.preventDefault();
      var message = $(this).val();
-     
      socket.emit('messages', message);
  });
 </script>  
-
-
-
 
     </body>
 </html>  
