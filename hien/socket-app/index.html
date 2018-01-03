@@ -40,11 +40,21 @@
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="slotMachineButton1" class="slotMachineButton"><p>START</p></button>
                 </div>
+                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                    <button id="giai1" type="button" value="1" class="slotMachineButton"><p>Giải 1</p></button>
+                </div>
+                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                    <button id="giai2" type="button" value="2" class="slotMachineButton"><p>Giải 2</p></button>
+                </div>
+                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                    <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>Đặc biệt</p></button>
+                </div>
                 <div class="hidden">
                     <video id="video" width="400" controls>
                         <source src="public/video/protec_2.mp3" type="video/mp4">
                     </video>
                 </div>
+
             </div>
         </div>
     </div>
@@ -150,41 +160,117 @@
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 2000
+        delay   : 1000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 2000
+        delay   : 1000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 2000
+        delay   : 1000
     });
     var str = " "; 
     socket.on('broad', function(data) {
 
-         var myVideo = document.getElementById("video"); 
-                 myVideo.play();
+var myVideo = document.getElementById("video"); 
+ myVideo.play();
+$("#machineResult").text(" ");
 
-        $("#machineResult").text(" ");
-       //  var t = Math.floor((Math.random() * 3600) + 60);
-         //   console.log(t + "here");
+if( data == 1){
+     setTimeout(function(){
+        machine1.shuffle(5, null);
+    }, 2000);
+    machine1.shuffle(5, onComplete);
+    setTimeout(function(){
+        machine2.shuffle(5, null);
+    }, 2500);
+     setTimeout(function(){
+        machine2.shuffle(5, null);
+    }, 1000);
+    setTimeout(function(){
+        machine2.shuffle(5, null);
+    }, 2500);
+    setTimeout(function(){
+        machine2.shuffle(5, onComplete);
+    }, 1500);
+     setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1500);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1500);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1500);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1500);
+    setTimeout(function(){
+        machine3.shuffle(5, onComplete);
+    }, 2500);
+}
+else if( data == 2){
+    
+  
+    setTimeout(function(){
+        machine1.shuffle(5, null);
+    },500);
+    setTimeout(function(){
         machine1.shuffle(5, onComplete);
+    },1000);
+    setTimeout(function(){
+        machine2.shuffle(5, null);
+    }, 500);
+    setTimeout(function(){
+        machine2.shuffle(5, null);
+    }, 500);
+    setTimeout(function(){
+        machine2.shuffle(5, onComplete);
+    }, 1000);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 500);
+     setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 500);
+      setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 500);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1000);
+    setTimeout(function(){
+        machine3.shuffle(5, onComplete);
+    }, 1500);
+}
+else if( data == 1000){
+    machine1.shuffle(5, onComplete);
+    setTimeout(function(){
+        machine2.shuffle(5, onComplete);
+    }, 500);
+    setTimeout(function(){
+        machine3.shuffle(5, null);
+    }, 1000);
+    setTimeout(function(){
+        machine3.shuffle(5, onComplete);
+    }, 1000);
+}
+else {
+    machine1.shuffle(5, onComplete);
+    setTimeout(function(){
+        machine2.shuffle(5, onComplete);
+    }, 500);
+    setTimeout(function(){
+        machine3.shuffle(5, onComplete);
+    }, 1000);
+}
+       
         
-        setTimeout(function(){
-            machine2.shuffle(5, onComplete);
-        }, 500);
-          setTimeout(function(){
-            machine3.shuffle(5, null);
-        }, 1000);
-          setTimeout(function(){
-            machine3.shuffle(5, null);
-        }, 1000);
-        setTimeout(function(){
-            machine3.shuffle(5, onComplete);
-        }, 1000);
+
+   
         
         event.preventDefault();
     });
@@ -194,6 +280,38 @@
      e.preventDefault();
      var message = $(this).val();
      socket.emit('messages', message);
+ });
+
+ $('#giai1').click(function(e){
+    document.getElementById("giai1").disabled = true;
+    document.getElementById("giai2").disabled = true;
+    document.getElementById("giaidacbiet").disabled = true;
+    document.getElementById("slotMachineButton1").disabled = true;
+    e.preventDefault();
+    var message = $(this).val();
+ 
+    socket.emit('messages', message);
+ });
+ $('#giai2').click(function(e){
+    document.getElementById("giai1").disabled = true;
+    document.getElementById("giai2").disabled = true;
+    document.getElementById("giaidacbiet").disabled = true;
+    document.getElementById("slotMachineButton1").disabled = true;
+    e.preventDefault();
+    var message = $(this).val();
+  
+    socket.emit('messages', message);      
+ });
+ $('#giaidacbiet').click(function(e){
+                         
+    document.getElementById("giai1").disabled = true;
+    document.getElementById("giai2").disabled = true;
+    document.getElementById("giaidacbiet").disabled = true;
+    document.getElementById("slotMachineButton1").disabled = true;
+    e.preventDefault();
+    var message = $(this).val();
+  
+    socket.emit('messages', message);      
  });
 </script>  
 
