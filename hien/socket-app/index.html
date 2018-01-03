@@ -38,20 +38,30 @@
         <div class="row btn-start">
             <div class="col-md-12 col-xs-12 col-sm-12 ">
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="slotMachineButton1" class="slotMachineButton"><p>START</p></button>
+                    <button id="slotMachineButton1" class="slotMachineButton"><p>Start</p></button>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                    <button id="giai2" type="button" value="2" class="slotMachineButton"><p>Giải 2</p></button>
                 </div>
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="giai1" type="button" value="1" class="slotMachineButton"><p>Giải 1</p></button>
                 </div>
-                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="giai2" type="button" value="2" class="slotMachineButton"><p>Giải 2</p></button>
-                </div>
+                
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>Đặc biệt</p></button>
                 </div>
-                <div class="hidden">
-                    <video id="video" width="400" controls>
-                        <source src="public/video/protec_2.mp3" type="video/mp4">
+                <div class="">
+                    <video id="video0" width="400" controls>
+                        <source src="public/video/protec.mp3" type="video/mp4">
+                    </video>
+                     <video id="video2" width="400" controls>
+                        <source src="public/video/protec.mp3" type="video/mp4">
+                    </video>
+                     <video id="video1" width="400" controls>
+                        <source src="public/video/protec.mp3" type="video/mp4">
+                    </video>
+                     <video id="video1000" width="400" controls>
+                        <source src="public/video/protec.mp3" type="video/mp4">
                     </video>
                 </div>
 
@@ -175,145 +185,108 @@
     var str = " "; 
     socket.on('broad', function(data) {
 
-var myVideo = document.getElementById("video"); 
- myVideo.play();
-$("#machineResult").text(" ");
-
-if( data == 1){
-     setTimeout(function(){
-        machine1.shuffle(5, null);
-    }, 2000);
-    machine1.shuffle(5, onComplete);
-    setTimeout(function(){
-        machine2.shuffle(5, null);
-    }, 2500);
-     setTimeout(function(){
-        machine2.shuffle(5, null);
-    }, 1000);
-    setTimeout(function(){
-        machine2.shuffle(5, null);
-    }, 2500);
-    setTimeout(function(){
-        machine2.shuffle(5, onComplete);
-    }, 1500);
-     setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1500);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1500);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1500);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1500);
-    setTimeout(function(){
-        machine3.shuffle(5, onComplete);
-    }, 2500);
-}
-else if( data == 2){
-    
-  
-    setTimeout(function(){
-        machine1.shuffle(5, null);
-    },500);
-    setTimeout(function(){
-        machine1.shuffle(5, onComplete);
-    },1000);
-    setTimeout(function(){
-        machine2.shuffle(5, null);
-    }, 500);
-    setTimeout(function(){
-        machine2.shuffle(5, null);
-    }, 500);
-    setTimeout(function(){
-        machine2.shuffle(5, onComplete);
-    }, 1000);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 500);
-     setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 500);
-      setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 500);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1000);
-    setTimeout(function(){
-        machine3.shuffle(5, onComplete);
-    }, 1500);
-}
-else if( data == 1000){
-    machine1.shuffle(5, onComplete);
-    setTimeout(function(){
-        machine2.shuffle(5, onComplete);
-    }, 500);
-    setTimeout(function(){
-        machine3.shuffle(5, null);
-    }, 1000);
-    setTimeout(function(){
-        machine3.shuffle(5, onComplete);
-    }, 1000);
-}
-else {
-    machine1.shuffle(5, onComplete);
-    setTimeout(function(){
-        machine2.shuffle(5, onComplete);
-    }, 500);
-    setTimeout(function(){
-        machine3.shuffle(5, onComplete);
-    }, 1000);
-}
-       
-        
-
    
+    $("#machineResult").text(" ");
+
+    if( data == 1){
+        console.log(data);
+        var myVideo = document.getElementById("video1"); 
+             myVideo.play();
+       
+        machine1.shuffle(55, onComplete);
+       
+        setTimeout(function(){
+            machine2.shuffle(80, onComplete);
+        }, 1500);
         
-        event.preventDefault();
-    });
+        setTimeout(function(){
+            machine3.shuffle(105, onComplete);
+        }, 2500);
+    }
+    else if( data == 2){
+      console.log(data);
+        var myVideo = document.getElementById("video2"); 
+            myVideo.play();
+        machine1.shuffle(55, onComplete);
 
- $('#slotMachineButton1').click(function(e){
-    document.getElementById("slotMachineButton1").disabled = true;
-     e.preventDefault();
-     var message = $(this).val();
-     socket.emit('messages', message);
- });
+        setTimeout(function(){
+            machine2.shuffle(55, onComplete);
+        }, 1500);
+       
+        setTimeout(function(){
+            machine3.shuffle(75, onComplete);
+        }, 2000);
+    }
+    else if( data == 1000){
+        console.log(data);
+         var myVideo = document.getElementById("video1000"); 
+            myVideo.play();
+        machine1.shuffle(35, onComplete);
+        setTimeout(function(){
+            machine2.shuffle(55, onComplete);
+        }, 1500);
+        
+        setTimeout(function(){
+            machine3.shuffle(85, onComplete);
+        }, 3500);
+       
+    }
+    else {
+        var myVideo = document.getElementById("video0"); 
+            myVideo.play();
+        machine1.shuffle(20, onComplete);
+        setTimeout(function(){
+            machine2.shuffle(45, onComplete);
+        }, 1500);
+        setTimeout(function(){
+            machine3.shuffle(70, onComplete);
+        }, 3000);
+    }
+    event.preventDefault();
+});
 
- $('#giai1').click(function(e){
-    document.getElementById("giai1").disabled = true;
-    document.getElementById("giai2").disabled = true;
-    document.getElementById("giaidacbiet").disabled = true;
-    document.getElementById("slotMachineButton1").disabled = true;
-    e.preventDefault();
-    var message = $(this).val();
- 
-    socket.emit('messages', message);
- });
- $('#giai2').click(function(e){
-    document.getElementById("giai1").disabled = true;
-    document.getElementById("giai2").disabled = true;
-    document.getElementById("giaidacbiet").disabled = true;
-    document.getElementById("slotMachineButton1").disabled = true;
-    e.preventDefault();
-    var message = $(this).val();
-  
-    socket.emit('messages', message);      
- });
- $('#giaidacbiet').click(function(e){
-                         
-    document.getElementById("giai1").disabled = true;
-    document.getElementById("giai2").disabled = true;
-    document.getElementById("giaidacbiet").disabled = true;
-    document.getElementById("slotMachineButton1").disabled = true;
-    e.preventDefault();
-    var message = $(this).val();
-  
-    socket.emit('messages', message);      
- });
-</script>  
+     $('#slotMachineButton1').click(function(e){
+        document.getElementById("giai1").disabled = true;
+        document.getElementById("giai2").disabled = true;
+        document.getElementById("giaidacbiet").disabled = true;
+        document.getElementById("slotMachineButton1").disabled = true;
+         e.preventDefault();
+         var message = $(this).val();
+         socket.emit('messages', message);
+     });
+
+     $('#giai1').click(function(e){
+        document.getElementById("giai1").disabled = true;
+        document.getElementById("giai2").disabled = true;
+        document.getElementById("giaidacbiet").disabled = true;
+        document.getElementById("slotMachineButton1").disabled = true;
+        e.preventDefault();
+        var message = $(this).val();
+     
+        socket.emit('messages', message);
+     });
+     $('#giai2').click(function(e){
+        document.getElementById("giai1").disabled = true;
+        document.getElementById("giai2").disabled = true;
+        document.getElementById("giaidacbiet").disabled = true;
+        document.getElementById("slotMachineButton1").disabled = true;
+        e.preventDefault();
+        var message = $(this).val();
+      
+        socket.emit('messages', message);      
+     });
+     $('#giaidacbiet').click(function(e){
+                             
+        document.getElementById("giai1").disabled = true;
+        document.getElementById("giai2").disabled = true;
+        document.getElementById("giaidacbiet").disabled = true;
+        document.getElementById("slotMachineButton1").disabled = true;
+        e.preventDefault();
+        var message = $(this).val();
+      
+        socket.emit('messages', message);      
+     });
+    </script>  
 
     </body>
 </html>  
