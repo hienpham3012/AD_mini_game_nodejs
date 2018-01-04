@@ -40,9 +40,13 @@
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="slotMachineButton1" class="slotMachineButton"><p>Start</p></button>
                 </div>
+                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                    <button id="giai3" type="button" value="3" class="slotMachineButton"><p>Giải 3</p></button>
+                </div>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="giai2" type="button" value="2" class="slotMachineButton"><p>Giải 2</p></button>
                 </div>
+                
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="giai1" type="button" value="1" class="slotMachineButton"><p>Giải 1</p></button>
                 </div>
@@ -50,18 +54,21 @@
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>Đặc biệt</p></button>
                 </div>
-                <div class="">
+                <div class="hidden">
                     <video id="video0" width="400" controls>
-                        <source src="public/video/protec.mp3" type="video/mp4">
+                        <source src="public/video/protec_0.mp3" type="video/mp4">
+                    </video>
+                     <video id="video3" width="400" controls>
+                        <source src="public/video/cd8t_2.mp3" type="video/mp4">
                     </video>
                      <video id="video2" width="400" controls>
-                        <source src="public/video/protec.mp3" type="video/mp4">
+                        <source src="public/video/tayduky_2.mp3" type="video/mp4">
                     </video>
                      <video id="video1" width="400" controls>
-                        <source src="public/video/protec.mp3" type="video/mp4">
+                        <source src="public/video/gangnam_1.mp3" type="video/mp4">
                     </video>
                      <video id="video1000" width="400" controls>
-                        <source src="public/video/protec.mp3" type="video/mp4">
+                        <source src="public/video/gangnam_0.mp3" type="video/mp4">
                     </video>
                 </div>
 
@@ -117,7 +124,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 midd-div hidden-xs">
-                <div class="col-md-4 col-sm-4 col-xs-12 "><h2 class="title">Lucky Number: </h2></div>
+                <div class="col-md-4 col-sm-4 col-xs-12 "><h3 class="title">Lucky Number: </h3></div>
                 <div class="col-md-8 col-sm-8 col-xs-12 show-result">
                     <h2><span id="machineResult"></span></h2>
                 </div>
@@ -135,8 +142,8 @@
     </div>
 
 </footer>
-         <script src="/jquery/dist/jquery.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
         <script>  
@@ -203,7 +210,7 @@
             machine3.shuffle(105, onComplete);
         }, 2500);
     }
-    else if( data == 2){
+      else if( data == 2){
       console.log(data);
         var myVideo = document.getElementById("video2"); 
             myVideo.play();
@@ -216,6 +223,18 @@
         setTimeout(function(){
             machine3.shuffle(75, onComplete);
         }, 2000);
+    }
+    else if( data == 3){
+      console.log(data);
+        var myVideo = document.getElementById("video3"); 
+            myVideo.play();
+        machine1.shuffle(18, onComplete);
+        setTimeout(function(){
+            machine2.shuffle(45, onComplete);
+        }, 1500);
+        setTimeout(function(){
+            machine3.shuffle(70, onComplete);
+        }, 3000);
     }
     else if( data == 1000){
         console.log(data);
@@ -247,9 +266,18 @@
 
      $('#slotMachineButton1').click(function(e){
         document.getElementById("giai1").disabled = true;
-        document.getElementById("giai2").disabled = true;
-        document.getElementById("giaidacbiet").disabled = true;
-        document.getElementById("slotMachineButton1").disabled = true;
+            document.getElementById("giai2").disabled = true;
+            document.getElementById("giai3").disabled = true;
+            document.getElementById("giaidacbiet").disabled = true;
+            document.getElementById("slotMachineButton1").disabled = true;
+        setTimeout(function(){
+            document.getElementById("giai1").disabled = false;
+            document.getElementById("giai2").disabled = false;
+            document.getElementById("giai3").disabled = false;
+            document.getElementById("giaidacbiet").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
+        }, 45000);
+       
          e.preventDefault();
          var message = $(this).val();
          socket.emit('messages', message);
@@ -258,8 +286,16 @@
      $('#giai1').click(function(e){
         document.getElementById("giai1").disabled = true;
         document.getElementById("giai2").disabled = true;
+        document.getElementById("giai3").disabled = true;
         document.getElementById("giaidacbiet").disabled = true;
         document.getElementById("slotMachineButton1").disabled = true;
+        setTimeout(function(){
+            document.getElementById("giai1").disabled = false;
+            document.getElementById("giai2").disabled = false;
+            document.getElementById("giai3").disabled = false;
+            document.getElementById("giaidacbiet").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
+        }, 56000);
         e.preventDefault();
         var message = $(this).val();
      
@@ -268,8 +304,34 @@
      $('#giai2').click(function(e){
         document.getElementById("giai1").disabled = true;
         document.getElementById("giai2").disabled = true;
+        document.getElementById("giai3").disabled = true;
         document.getElementById("giaidacbiet").disabled = true;
         document.getElementById("slotMachineButton1").disabled = true;
+        setTimeout(function(){
+            document.getElementById("giai1").disabled = false;
+            document.getElementById("giai2").disabled = false;
+            document.getElementById("giai3").disabled = false;
+            document.getElementById("giaidacbiet").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
+        }, 44000);
+        e.preventDefault();
+        var message = $(this).val();
+      
+        socket.emit('messages', message);      
+     });
+      $('#giai3').click(function(e){
+        document.getElementById("giai1").disabled = true;
+        document.getElementById("giai2").disabled = true;
+        document.getElementById("giai3").disabled = true;
+        document.getElementById("giaidacbiet").disabled = true;
+        document.getElementById("slotMachineButton1").disabled = true;
+        setTimeout(function(){
+            document.getElementById("giai1").disabled = false;
+            document.getElementById("giai2").disabled = false;
+            document.getElementById("giai3").disabled = false;
+            document.getElementById("giaidacbiet").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
+        }, 45000);
         e.preventDefault();
         var message = $(this).val();
       
@@ -279,8 +341,10 @@
                              
         document.getElementById("giai1").disabled = true;
         document.getElementById("giai2").disabled = true;
+        document.getElementById("giai3").disabled = true;
         document.getElementById("giaidacbiet").disabled = true;
         document.getElementById("slotMachineButton1").disabled = true;
+
         e.preventDefault();
         var message = $(this).val();
       
