@@ -253,12 +253,12 @@
     else {
         var myVideo = document.getElementById("video0"); 
             myVideo.play();
-        machine1.shuffle(20, onComplete);
+        machine1.shuffle(15, onComplete);
         setTimeout(function(){
-            machine2.shuffle(45, onComplete);
+            machine2.shuffle(25, onComplete);
         }, 1500);
         setTimeout(function(){
-            machine3.shuffle(70, onComplete);
+            machine3.shuffle(40, onComplete);
         }, 3000);
     }
     event.preventDefault();
@@ -276,7 +276,7 @@
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 45000);
+        }, 33000);
        
          e.preventDefault();
          var message = $(this).val();
@@ -295,7 +295,7 @@
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 56000);
+        }, 59000);
         e.preventDefault();
         var message = $(this).val();
      
