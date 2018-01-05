@@ -35,8 +35,8 @@
 </header>
 <section>
     <div class="container-fluid">
-        <div class="row btn-start">
-            <div class="col-md-12 col-xs-12 col-sm-12 ">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 btn-start" >
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
                     <button id="slotMachineButton1" class="slotMachineButton"><p>Start</p></button>
                 </div>
@@ -59,16 +59,16 @@
                         <source src="public/video/protec_0.mp3" type="video/mp4">
                     </video>
                      <video id="video3" width="400" controls>
-                        <source src="public/video/cd8t_2.mp3" type="video/mp4">
+                        <source src="public/video/senbon_1.mp3" type="video/mp4">
                     </video>
                      <video id="video2" width="400" controls>
-                        <source src="public/video/tayduky_2.mp3" type="video/mp4">
+                        <source src="public/video/timlai_1.mp3" type="video/mp4">
                     </video>
                      <video id="video1" width="400" controls>
-                        <source src="public/video/gangnam_1.mp3" type="video/mp4">
+                        <source src="public/video/gangnam_45s.mp3" type="video/mp4">
                     </video>
                      <video id="video1000" width="400" controls>
-                        <source src="public/video/gangnam_0.mp3" type="video/mp4">
+                        <source src="public/video/senbon_55s.mp3" type="video/mp4">
                     </video>
                 </div>
 
@@ -146,12 +146,12 @@
     <script src="/socket.io/socket.io.js"></script>
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
-        <script>  
- var socket = io.connect('http://192.168.8.185:4201');
+<script>  
+     var socket = io.connect('http://192.168.8.185:4201');
 
- socket.on('connect', function(data) {
-    socket.emit('join', 'Hello World from client');
- });
+     socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+     });
  function onComplete(active){
         switch(this.element[0].id){
             case 'machine1':                        
@@ -177,89 +177,87 @@
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 1000
+        delay   : 3000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 1000
+        delay   : 3000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 1000
+        delay   : 2500
     });
     var str = " "; 
-    socket.on('broad', function(data) {
+socket.on('broad', function(data) {
 
    
     $("#machineResult").text(" ");
 
     if( data == 1){
-        console.log(data);
+       console.log(data);
         var myVideo = document.getElementById("video1"); 
-             myVideo.play();
-       
-        machine1.shuffle(55, onComplete);
-       
-        setTimeout(function(){
-            machine2.shuffle(80, onComplete);
-        }, 1500);
-        
-        setTimeout(function(){
-            machine3.shuffle(105, onComplete);
-        }, 2500);
-    }
-      else if( data == 2){
-      console.log(data);
-        var myVideo = document.getElementById("video2"); 
             myVideo.play();
-        machine1.shuffle(55, onComplete);
+        machine1.shuffle(10, onComplete);
 
         setTimeout(function(){
-            machine2.shuffle(55, onComplete);
+            machine2.shuffle(10, onComplete);
         }, 1500);
        
         setTimeout(function(){
-            machine3.shuffle(75, onComplete);
+            machine3.shuffle(25, onComplete);
+        }, 3000);
+    }
+    else if( data == 2){
+        console.log(data);
+        var myVideo = document.getElementById("video2"); 
+            myVideo.play();
+        machine1.shuffle(10, onComplete);
+        setTimeout(function(){
+            machine2.shuffle(15, onComplete);
+        }, 1500);
+        setTimeout(function(){
+            machine3.shuffle(25, onComplete);
         }, 2000);
     }
     else if( data == 3){
       console.log(data);
         var myVideo = document.getElementById("video3"); 
             myVideo.play();
-        machine1.shuffle(18, onComplete);
+        machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(45, onComplete);
+            machine2.shuffle(15, onComplete);
         }, 1500);
         setTimeout(function(){
-            machine3.shuffle(70, onComplete);
-        }, 3000);
+            machine3.shuffle(25, onComplete);
+        }, 2000);
     }
     else if( data == 1000){
+       
         console.log(data);
          var myVideo = document.getElementById("video1000"); 
             myVideo.play();
-        machine1.shuffle(35, onComplete);
+        machine1.shuffle(7, onComplete);
         setTimeout(function(){
-            machine2.shuffle(55, onComplete);
-        }, 1500);
+            machine2.shuffle(20, onComplete);
+        }, 1000);
         
         setTimeout(function(){
-            machine3.shuffle(85, onComplete);
-        }, 3500);
+            machine3.shuffle(32, onComplete);
+        }, 4000);
        
     }
     else {
         var myVideo = document.getElementById("video0"); 
             myVideo.play();
-        machine1.shuffle(15, onComplete);
+        machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(25, onComplete);
+            machine2.shuffle(10, onComplete);
         }, 1500);
         setTimeout(function(){
-            machine3.shuffle(40, onComplete);
-        }, 3000);
+            machine3.shuffle(15, onComplete);
+        }, 2000);
     }
     event.preventDefault();
 });
@@ -276,7 +274,7 @@
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 33000);
+        }, 35000);
        
          e.preventDefault();
          var message = $(this).val();
@@ -295,7 +293,7 @@
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 59000);
+        }, 40000);
         e.preventDefault();
         var message = $(this).val();
      
@@ -350,7 +348,7 @@
       
         socket.emit('messages', message);      
      });
-    </script>  
+</script>  
 
     </body>
 </html>  
