@@ -56,19 +56,19 @@
                 </div>
                 <div class="hidden">
                     <video id="video0" width="400" controls>
-                        <source src="public/video/protec_0.mp3" type="video/mp4">
+                        <source src="public/video/senbon_45s.mp3" type="video/mp4">
                     </video>
                      <video id="video3" width="400" controls>
                         <source src="public/video/senbon_45s.mp3" type="video/mp4">
                     </video>
                      <video id="video2" width="400" controls>
-                        <source src="public/video/timlai_1.mp3" type="video/mp4">
+                        <source src="public/video/senbon_45s.mp3" type="video/mp4">
                     </video>
                      <video id="video1" width="400" controls>
-                        <source src="public/video/gangnam_45s.mp3" type="video/mp4">
+                        <source src="public/video/senbon_45s.mp3" type="video/mp4">
                     </video>
                      <video id="video1000" width="400" controls>
-                        <source src="public/video/senbon_55s.mp3" type="video/mp4">
+                        <source src="public/video/senbon_45s.mp3" type="video/mp4">
                     </video>
                 </div>
 
@@ -152,48 +152,58 @@
      socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
      });
+     var c_row = 0;  var rowar = new Array();
  function onComplete(active){
+    
         switch(this.element[0].id){
             case 'machine1':                        
                 $("#machine1Result").text("First Number: "+this.active);    
                 str = str + this.active ; 
+                tam = tam + this.active ; 
                 $("#machineResult").text(str);  
                 break;
             case 'machine2':
                 $("#machine2Result").text("Second Number: "+this.active);
                 str = str + this.active ; 
+                tam = tam + this.active ; 
                 $("#machineResult").text(str);
                 break;
             case 'machine3':
                 $("#machine3Result").text("Third Number: "+this.active);
-                str = str + this.active + "/ "; 
+                str = str + this.active ; 
+                console.log(str);
+                 str = str + '/ ';
                 $("#machineResult").text(str);
+                c_row = c_row + 1;
+                tam = tam + this.active ; 
+                rowar[c_row] = tam ;
+                console.log( " row [" + c_row + "]" + rowar[c_row] );
                 break;
-
             $("#machineResult").text(str);
-             document.getElementById("slotMachineButton1").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
         }
     }
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 5000
+        delay   : 1000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 5000
+        delay   : 3000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 5000
+        delay   : 8000
     });
     var str = " "; 
+    var tam = "";
 socket.on('broad', function(data) {
-
+ tam = "";
    
-    $("#machineResult").text(" ");
+var ketqua = $("#machineResult").text(" ");
 
     if( data == 1){
        console.log(data);
@@ -203,11 +213,12 @@ socket.on('broad', function(data) {
 
         setTimeout(function(){
             machine2.shuffle(5, onComplete);
-        }, 1500);
+        }, 3000);
        
         setTimeout(function(){
-            machine3.shuffle(15, onComplete);
-        }, 3000);
+            machine3.shuffle(5, onComplete);
+        }, 8000);
+       
     }
     else if( data == 2){
         console.log(data);
@@ -218,8 +229,9 @@ socket.on('broad', function(data) {
             machine2.shuffle(5, onComplete);
         }, 1500);
         setTimeout(function(){
-            machine3.shuffle(10, onComplete);
+            machine3.shuffle(5, onComplete);
         }, 2000);
+       
     }
     else if( data == 3){
       console.log(data);
@@ -232,6 +244,7 @@ socket.on('broad', function(data) {
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
         }, 1000);
+       
     }
     else if( data == 1000){
        
@@ -246,6 +259,7 @@ socket.on('broad', function(data) {
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
         }, 1500);
+      
        
     }
     else {
@@ -258,8 +272,10 @@ socket.on('broad', function(data) {
         setTimeout(function(){
             machine3.shuffle(15, onComplete);
         }, 1000);
+        
     }
     event.preventDefault();
+
 });
 
      $('#slotMachineButton1').click(function(e){
