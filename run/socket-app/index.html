@@ -177,17 +177,17 @@
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 3000
+        delay   : 5000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 3000
+        delay   : 5000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 2500
+        delay   : 5000
     });
     var str = " "; 
 socket.on('broad', function(data) {
@@ -199,26 +199,26 @@ socket.on('broad', function(data) {
        console.log(data);
         var myVideo = document.getElementById("video1"); 
             myVideo.play();
-        machine1.shuffle(10, onComplete);
+        machine1.shuffle(5, onComplete);
 
         setTimeout(function(){
-            machine2.shuffle(10, onComplete);
+            machine2.shuffle(5, onComplete);
         }, 1500);
        
         setTimeout(function(){
-            machine3.shuffle(25, onComplete);
+            machine3.shuffle(15, onComplete);
         }, 3000);
     }
     else if( data == 2){
         console.log(data);
         var myVideo = document.getElementById("video2"); 
             myVideo.play();
-        machine1.shuffle(10, onComplete);
+        machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(15, onComplete);
+            machine2.shuffle(5, onComplete);
         }, 1500);
         setTimeout(function(){
-            machine3.shuffle(25, onComplete);
+            machine3.shuffle(10, onComplete);
         }, 2000);
     }
     else if( data == 3){
@@ -227,25 +227,25 @@ socket.on('broad', function(data) {
             myVideo.play();
         machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(15, onComplete);
-        }, 1500);
+            machine2.shuffle(5, onComplete);
+        }, 500);
         setTimeout(function(){
-            machine3.shuffle(25, onComplete);
-        }, 2000);
+            machine3.shuffle(5, onComplete);
+        }, 1000);
     }
     else if( data == 1000){
        
         console.log(data);
          var myVideo = document.getElementById("video1000"); 
             myVideo.play();
-        machine1.shuffle(7, onComplete);
+        machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(20, onComplete);
+            machine2.shuffle(5, onComplete);
         }, 1000);
         
         setTimeout(function(){
-            machine3.shuffle(32, onComplete);
-        }, 4000);
+            machine3.shuffle(5, onComplete);
+        }, 1500);
        
     }
     else {
@@ -253,11 +253,11 @@ socket.on('broad', function(data) {
             myVideo.play();
         machine1.shuffle(5, onComplete);
         setTimeout(function(){
-            machine2.shuffle(10, onComplete);
-        }, 1500);
+            machine2.shuffle(5, onComplete);
+        }, 500);
         setTimeout(function(){
             machine3.shuffle(15, onComplete);
-        }, 2000);
+        }, 1000);
     }
     event.preventDefault();
 });
