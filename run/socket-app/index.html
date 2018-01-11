@@ -56,7 +56,7 @@
                 </div>
                 <div class="hidden">
                     <video id="video0" width="400" controls>
-                        <source src="public/video/senbon_45s.mp3" type="video/mp4">
+                        <source src="public/video/A15s.mp3" type="video/mp4">
                     </video>
                      <video id="video3" width="400" controls>
                         <source src="public/video/senbon_45s.mp3" type="video/mp4">
@@ -147,7 +147,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
 <script>  
-     var socket = io.connect('http://192.168.8.185:4201');
+     var socket = io.connect('http://192.168.8.171:4201');
 
      socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
@@ -186,17 +186,17 @@
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 1000
+        delay   : 2000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 3000
+        delay   : 2000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 8000
+        delay   : 2500
     });
     var str = " "; 
     var tam = "";
@@ -212,9 +212,17 @@ var ketqua = $("#machineResult").text(" ");
         machine1.shuffle(5, onComplete);
 
         setTimeout(function(){
+            machine2.shuffle(5, null);
+        }, 3000);
+
+        setTimeout(function(){
             machine2.shuffle(5, onComplete);
         }, 3000);
-       
+
+         setTimeout(function(){
+            machine3.shuffle(5, null);
+        }, 3000); 
+
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
         }, 8000);
@@ -252,13 +260,16 @@ var ketqua = $("#machineResult").text(" ");
          var myVideo = document.getElementById("video1000"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
+
+
         setTimeout(function(){
             machine2.shuffle(5, onComplete);
-        }, 1000);
+        }, 14000);
+
         
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
-        }, 1500);
+        }, 30000);
       
        
     }
@@ -268,10 +279,10 @@ var ketqua = $("#machineResult").text(" ");
         machine1.shuffle(5, onComplete);
         setTimeout(function(){
             machine2.shuffle(5, onComplete);
-        }, 500);
+        }, 100);
         setTimeout(function(){
-            machine3.shuffle(15, onComplete);
-        }, 1000);
+            machine3.shuffle(5, onComplete);
+        }, 200);
         
     }
     event.preventDefault();
