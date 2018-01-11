@@ -4,7 +4,7 @@
   <title>Mini game Thiên Tú</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="public/css/bootstrap.min.css" type="text/css" media="screen" />
 
   <link rel="stylesheet" href="public/style.css" type="text/css" media="screen">
 
@@ -147,7 +147,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
 <script>  
-     var socket = io.connect('http://192.168.8.185:4201');
+     var socket = io.connect('http://192.168.8.171:4201');
 
      socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');

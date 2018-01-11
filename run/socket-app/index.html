@@ -4,7 +4,7 @@
   <title>Mini game Thiên Tú</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="public/css/bootstrap.min.css" type="text/css" media="screen" />
 
   <link rel="stylesheet" href="public/style.css" type="text/css" media="screen">
 
@@ -37,22 +37,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12 btn-start" >
+                 <div class="col-md-1 col-sm-1">
+                    
+                </div>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="slotMachineButton1" class="slotMachineButton"><p>Start</p></button>
+                    <button id="slotMachineButton1" class="slotMachineButton"><p>SILVER</p></button>
                 </div>
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="giai3" type="button" value="3" class="slotMachineButton"><p>Giải 3</p></button>
+                    <button id="giai3" type="button" value="3" class="slotMachineButton"><p>TITAN</p></button>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="giai2" type="button" value="2" class="slotMachineButton"><p>Giải 2</p></button>
+                    <button id="giai2" type="button" value="2" class="slotMachineButton"><p>GOLD</p></button>
                 </div>
                 
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="giai1" type="button" value="1" class="slotMachineButton"><p>Giải 1</p></button>
+                    <button id="giai1" type="button" value="1" class="slotMachineButton"><p>PLATINUM</p></button>
                 </div>
                 
                  <div class="col-md-2 col-sm-2 col-xs-12 text-center">
-                    <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>Đặc biệt</p></button>
+                    <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>DIAMOND</p></button>
                 </div>
                 <div class="hidden">
                     <video id="video0" width="400" controls>
@@ -204,15 +207,26 @@ socket.on('broad', function(data) {
  tam = "";
    
     var ketqua = $("#machineResult").text(" ");
-
+    var g1 = document.getElementById("giai1");
+    var g2 = document.getElementById("giai2");
+    var g3 = document.getElementById("giai3");
+     var g1000 = document.getElementById("giaidacbiet");
+    var gkk = document.getElementById("slotMachineButton1");
     if( data == 1){
        console.log(data);
-       var g1 = document.getElementById("giai1");
           g1.classList.add("disabled");
+           g2.classList.add("none");
+            g3.classList.add("none");
+             g1000.classList.add("none");
+              gkk.classList.add("none");
            setTimeout(function(){
             g1.classList.remove("disabled");
+              g2.classList.remove("none");
+                g3.classList.remove("none");
+                  g1000.classList.remove("none");
+                    gkk.classList.remove("none");
           
-        }, 30000);
+        }, 40500);
         var myVideo = document.getElementById("video1"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -235,7 +249,20 @@ socket.on('broad', function(data) {
        
     }
     else if( data == 2){
-        console.log(data);
+         g1.classList.add("none");
+           g2.classList.add("disabled");
+            g3.classList.add("none");
+             g1000.classList.add("none");
+              gkk.classList.add("none");
+           setTimeout(function(){
+            g1.classList.remove("none");
+              g2.classList.remove("disabled");
+                g3.classList.remove("none");
+                  g1000.classList.remove("none");
+                    gkk.classList.remove("none");
+          
+        }, 30500);
+
         var myVideo = document.getElementById("video2"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -248,7 +275,20 @@ socket.on('broad', function(data) {
        
     }
     else if( data == 3){
-      console.log(data);
+        g1.classList.add("none");
+           g2.classList.add("none");
+            g3.classList.add("disabled");
+             g1000.classList.add("none");
+              gkk.classList.add("none");
+           setTimeout(function(){
+            g1.classList.remove("none");
+              g2.classList.remove("none");
+                g3.classList.remove("disabled");
+                  g1000.classList.remove("none");
+                    gkk.classList.remove("none");
+          
+        }, 20500);
+
         var myVideo = document.getElementById("video3"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -261,8 +301,20 @@ socket.on('broad', function(data) {
        
     }
     else if( data == 1000){
-       
-        console.log(data);
+        g1.classList.add("none");
+           g2.classList.add("none");
+            g3.classList.add("none");
+             g1000.classList.add("disabled");
+              gkk.classList.add("none");
+           setTimeout(function(){
+            g1.classList.remove("none");
+              g2.classList.remove("none");
+                g3.classList.remove("none");
+                  g1000.classList.remove("disabled");
+                    gkk.classList.remove("none");
+          
+        }, 30500);
+
          var myVideo = document.getElementById("video1000"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -275,11 +327,25 @@ socket.on('broad', function(data) {
         
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
-        }, 30000);
+        }, 60000);
       
        
     }
     else {
+        g1.classList.add("none");
+           g2.classList.add("none");
+            g3.classList.add("none");
+             g1000.classList.add("none");
+              gkk.classList.add("disabled");
+           setTimeout(function(){
+            g1.classList.remove("none");
+              g2.classList.remove("none");
+                g3.classList.remove("none");
+                  g1000.classList.remove("none");
+                    gkk.classList.remove("disabled");
+          
+        }, 15500);
+
         var myVideo = document.getElementById("video0"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -307,7 +373,7 @@ socket.on('broad', function(data) {
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 35000);
+        }, 15500);
        
          e.preventDefault();
          var message = $(this).val();
@@ -326,7 +392,7 @@ socket.on('broad', function(data) {
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 1000);
+        }, 40500);
         e.preventDefault();
         var message = $(this).val();
      
@@ -344,7 +410,7 @@ socket.on('broad', function(data) {
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 44000);
+        }, 30500);
         e.preventDefault();
         var message = $(this).val();
       
@@ -362,7 +428,7 @@ socket.on('broad', function(data) {
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 45000);
+        }, 20500);
         e.preventDefault();
         var message = $(this).val();
       
