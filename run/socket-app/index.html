@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row result hidden-xs">
+        <div class="row result hidden-xs hidden-sm hidden-md">
             <div class="col-md-4 col-sm-4 col-xs-4">
                 <ul id="machine1" class="slotMachine">
                     <li class="slot parent"><p class="slot0">0</p></li>
@@ -88,7 +88,7 @@
                     <li class="slot parent"><p class="slot6">6</p></li>
                     <li class="slot parent"><p class="slot7">7</p></li>
                     <li class="slot parent"><p class="slot8">8</p></li>
-                    <li class="slot parent"><p class="slot9">9</p></li>
+                    
                 </ul>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4">
@@ -123,7 +123,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-xs-12 col-sm-12 midd-div hidden-xs">
+            <div class="col-md-12 col-xs-12 col-sm-12 midd-div hidden-xs hidden-sm hidden-md">
                 <div class="col-md-4 col-sm-4 col-xs-12 "><h3 class="title">Lucky Number: </h3></div>
                 <div class="col-md-8 col-sm-8 col-xs-12 show-result">
                     <h2><span id="machineResult"></span></h2>
@@ -171,13 +171,13 @@
             case 'machine3':
                 $("#machine3Result").text("Third Number: "+this.active);
                 str = str + this.active ; 
-                console.log(str);
+               
                  str = str + '/ ';
                 $("#machineResult").text(str);
                 c_row = c_row + 1;
                 tam = tam + this.active ; 
                 rowar[c_row] = tam ;
-                console.log( " row [" + c_row + "]" + rowar[c_row] );
+               
                 break;
             $("#machineResult").text(str);
             document.getElementById("slotMachineButton1").disabled = false;
@@ -203,10 +203,16 @@
 socket.on('broad', function(data) {
  tam = "";
    
-var ketqua = $("#machineResult").text(" ");
+    var ketqua = $("#machineResult").text(" ");
 
     if( data == 1){
        console.log(data);
+       var g1 = document.getElementById("giai1");
+          g1.classList.add("disabled");
+           setTimeout(function(){
+            g1.classList.remove("disabled");
+          
+        }, 30000);
         var myVideo = document.getElementById("video1"); 
             myVideo.play();
         machine1.shuffle(5, onComplete);
@@ -320,7 +326,7 @@ var ketqua = $("#machineResult").text(" ");
             document.getElementById("giai3").disabled = false;
             document.getElementById("giaidacbiet").disabled = false;
             document.getElementById("slotMachineButton1").disabled = false;
-        }, 40000);
+        }, 1000);
         e.preventDefault();
         var message = $(this).val();
      
