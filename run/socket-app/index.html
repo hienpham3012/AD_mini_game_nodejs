@@ -36,33 +36,33 @@
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-xs-12 col-sm-12 btn-start" >
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 btn-start" >
                  <div class="col-md-1 col-sm-1">
                     
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 text-center">
                     <button id="slotMachineButton1" class="slotMachineButton"><p>SILVER</p></button>
                 </div>
-                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 text-center">
                     <button id="giai3" type="button" value="3" class="slotMachineButton"><p>TITAN</p></button>
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 text-center">
                     <button id="giai2" type="button" value="2" class="slotMachineButton"><p>GOLD</p></button>
                 </div>
                 
-                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 text-center">
                     <button id="giai1" type="button" value="1" class="slotMachineButton"><p>PLATINUM</p></button>
                 </div>
                 
-                 <div class="col-md-2 col-sm-2 col-xs-12 text-center">
+                 <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 text-center">
                     <button id="giaidacbiet" type="button" value="1000" class="slotMachineButton"><p>DIAMOND</p></button>
                 </div>
                 <div class="hidden">
                     <video id="video0" width="400" controls>
-                        <source src="public/video/Silver-15s.mp3" type="video/mp4">
+                        <source src="public/video/Silver-25s.mp3" type="video/mp4">
                     </video>
                      <video id="video3" width="400" controls>
-                        <source src="public/video/Titan-20s.mp3" type="video/mp4">
+                        <source src="public/video/Titan-30s.mp3" type="video/mp4">
                     </video>
                      <video id="video2" width="400" controls>
                         <source src="public/video/Gold-30s.mp3" type="video/mp4">
@@ -150,7 +150,7 @@
 
   <script type="text/javascript" src="/public/jquery.slotmachine.js"></script>
 <script>  
-     var socket = io.connect('http://192.168.8.171:4201');
+     var socket = io.connect('http://192.168.8.102:4201');
 
      socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
@@ -189,17 +189,17 @@
 
     var machine1 = $("#machine1").slotMachine({
         active  : 0,
-        delay   : 2000
+        delay   : 3000
     });
     
     var machine2 = $("#machine2").slotMachine({
         active  : 1,
-        delay   : 2000
+        delay   : 4000
     });
     
     var machine3 = $("#machine3").slotMachine({
         active  : 2,
-        delay   : 2500
+        delay   : 4000
     });
     var str = " "; 
     var tam = "";
@@ -229,23 +229,16 @@ socket.on('broad', function(data) {
         }, 40500);
         var myVideo = document.getElementById("video1"); 
             myVideo.play();
-        machine1.shuffle(5, onComplete);
+        machine1.shuffle(2, onComplete);
+
 
         setTimeout(function(){
-            machine2.shuffle(5, null);
-        }, 3000);
+            machine2.shuffle(3, onComplete);
+        }, 7000);
 
         setTimeout(function(){
-            machine2.shuffle(5, onComplete);
-        }, 3000);
-
-         setTimeout(function(){
-            machine3.shuffle(5, null);
-        }, 3000); 
-
-        setTimeout(function(){
-            machine3.shuffle(5, onComplete);
-        }, 8000);
+            machine3.shuffle(3, onComplete);
+        }, 17000);
        
     }
     else if( data == 2){
@@ -287,17 +280,18 @@ socket.on('broad', function(data) {
                   g1000.classList.remove("none");
                     gkk.classList.remove("none");
           
-        }, 20500);
-
+        }, 31000);
+        
         var myVideo = document.getElementById("video3"); 
             myVideo.play();
-        machine1.shuffle(5, onComplete);
+        machine1.shuffle(0, onComplete);
+        
         setTimeout(function(){
             machine2.shuffle(5, onComplete);
         }, 500);
         setTimeout(function(){
             machine3.shuffle(5, onComplete);
-        }, 1000);
+        }, 800);
        
     }
     else if( data == 1000){
@@ -313,7 +307,7 @@ socket.on('broad', function(data) {
                   g1000.classList.remove("disabled");
                     gkk.classList.remove("none");
           
-        }, 30500);
+        }, 105000);
 
          var myVideo = document.getElementById("video1000"); 
             myVideo.play();
@@ -322,12 +316,12 @@ socket.on('broad', function(data) {
 
         setTimeout(function(){
             machine2.shuffle(5, onComplete);
-        }, 14000);
+        }, 13500);
 
         
         setTimeout(function(){
-            machine3.shuffle(5, onComplete);
-        }, 60000);
+            machine3.shuffle(7, onComplete);
+        }, 28000);
       
        
     }
@@ -344,17 +338,17 @@ socket.on('broad', function(data) {
                   g1000.classList.remove("none");
                     gkk.classList.remove("disabled");
           
-        }, 15500);
+        }, 26500);
 
         var myVideo = document.getElementById("video0"); 
             myVideo.play();
-        machine1.shuffle(5, onComplete);
+        machine1.shuffle(0, onComplete);
         setTimeout(function(){
-            machine2.shuffle(5, onComplete);
+            machine2.shuffle(1, onComplete);
+        }, 50);
+        setTimeout(function(){
+            machine3.shuffle(3, onComplete);
         }, 100);
-        setTimeout(function(){
-            machine3.shuffle(5, onComplete);
-        }, 200);
         
     }
     event.preventDefault();
@@ -441,7 +435,13 @@ socket.on('broad', function(data) {
         document.getElementById("giai3").disabled = true;
         document.getElementById("giaidacbiet").disabled = true;
         document.getElementById("slotMachineButton1").disabled = true;
-
+        setTimeout(function(){
+            document.getElementById("giai1").disabled = false;
+            document.getElementById("giai2").disabled = false;
+            document.getElementById("giai3").disabled = false;
+            document.getElementById("giaidacbiet").disabled = false;
+            document.getElementById("slotMachineButton1").disabled = false;
+        }, 100500);
         e.preventDefault();
         var message = $(this).val();
       
